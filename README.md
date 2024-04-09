@@ -2,7 +2,7 @@
 
 # Toddler: Tools and Operations for Diagnostics, Data, Light, and other Electromagnetic Radiation
 _Starting physicists are often limited by their data processing abilities. 
-With this library,  I try to make at so easy a toddler can do it._
+With this library,  I try to make it so easy a toddler can do it._
 
 <br />
 
