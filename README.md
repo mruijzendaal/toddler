@@ -1,8 +1,9 @@
-# Toddler: Tools and Operations for Diagnostics, Data, Light, and other Electromagnetic Radiation
-
-> Data processing is often limiting the output of starting physicists. With this library,  I try to make at so easy a toddler kan do it.
-
 ![image](./assets/hero_256x256.png)
+
+# Toddler: Tools and Operations for Diagnostics, Data, Light, and other Electromagnetic Radiation
+_Data processing is often limiting the output of starting physicists. With this library,  I try to make at so easy a toddler kan do it._
+
+
 
 ## Functionality
 This module is split up into physics (e.g. conversion of units) and data processing (e.g. filtering images)
@@ -12,6 +13,9 @@ This module is split up into physics (e.g. conversion of units) and data process
 `toddler.data.spectrum.Spectrum` has the most utility of this library. It makes iterative processing on numpy arrays and its coordinates much simpler. The code below loads data of an optical spectrometer, applies some heavy processing, and plots the result. The equivalent code with out-of-the-box numpy would be much more convoluted.
 
 ```python
+from toddler.data.spectrum import Spectrum
+import matplotlib.pyplot as plt 
+
 s = Spectrum.from_file("some_file.csv")
 s = s.median(axis=2)
      .mean(axis=1)
