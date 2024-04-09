@@ -94,8 +94,12 @@ classifiers = [
   "Development Status :: 3 - Alpha",
 
   # Indicate who your project is intended for
-  "Intended Audience :: Developers, Scientific Researchers, Physicists",
-  "Topic :: Physics, Mathematics, Data Analysis",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering",
+  "Topic :: Scientific/Engineering :: Image Processing",
+  "Topic :: Scientific/Engineering :: Physics",
+  "Topic :: Scientific/Engineering :: Mathematics",
 
   # Pick your license as you wish
   "License :: OSI Approved :: MIT License",
@@ -119,7 +123,7 @@ classifiers = [
 # For an analysis of this field vs pip's requirements files see:
 # https://packaging.python.org/discussions/install-requires-vs-requirements/
 dependencies = [
-  "numpy", "sif_parser", "pandas"
+  "numpy", "sif_parser", "pandas", "scipy"
 ]
 
 # List additional groups of dependencies here (e.g. development

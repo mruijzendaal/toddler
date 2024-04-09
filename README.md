@@ -1,4 +1,5 @@
-![image](./assets/hero_256x256.png)
+<img src="https://github.com/mruijzendaal/toddler/blob/main/assets/hero_512x512.png?raw=true" width="256">
+
 
 # Toddler: Tools and Operations for Diagnostics, Data, Light, and other Electromagnetic Radiation
 _Starting physicists are often limited by their data processing abilities. 
