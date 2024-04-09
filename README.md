@@ -1,9 +1,10 @@
 ![image](./assets/hero_256x256.png)
 
 # Toddler: Tools and Operations for Diagnostics, Data, Light, and other Electromagnetic Radiation
-_Data processing is often limiting the output of starting physicists. With this library,  I try to make at so easy a toddler kan do it._
+_Starting physicists are often limited by their data processing abilities. 
+With this library,  I try to make at so easy a toddler can do it._
 
-
+<br />
 
 ## Functionality
 This module is split up into physics (e.g. conversion of units) and data processing (e.g. filtering images)
@@ -42,3 +43,9 @@ plt.show()
 `toddler.physics.thermodynamics` contains utilities for thermodynamic properties (e.g. pressure to gas density)
 
 `toddler.physics.transport` is a work-in-progress.
+
+
+## See also
+For other tools for researchers and scientists, see
+- [wedme](https://github.com/mruijzendaal/wedme-plots): Journal-quality stylesheets for papers, posters and presentations
+- [pypdfplot](https://github.com/dcmvdbekerom/pypdfplot): Embedding in a figure its generating Pythons script.
