@@ -2,10 +2,18 @@
 
 
 # Toddler: Tools and Operations for Diagnostics, Data, Light, and other Electromagnetic Radiation
-_Starting physicists are often limited by their data processing abilities. 
-With this library,  I try to make it so easy a toddler can do it._
+_Starting physicists are often limited by their data processing abilities.
+This library makes it so easy a toddler could do it._
 
 <br />
+
+## Installation
+Install from [PyPI](https://pypi.org/project/toddler/) using PIP:
+```
+pip install toddler
+```
+
+Anaconda users should follow [this documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-pkgs.html#installing-non-conda-packages) and run `conda activate` and `conda install pip` before running the above `pip` command.
 
 ## Functionality
 This module is split up into physics (e.g. conversion of units) and data processing (e.g. filtering images)
