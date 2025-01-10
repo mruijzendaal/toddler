@@ -80,7 +80,7 @@ class Spectrum:
             self.data / other.data, self.info, self.lambda_, self._axis_lambda
         )
 
-    def __mul__(self, other: Self) -> Self:
+    def __mul__(self, other: Union[Self, int, float, np.ndarray]) -> Self:
         if (
             isinstance(other, np.ndarray)
             or isinstance(other, float)
