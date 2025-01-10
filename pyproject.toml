@@ -123,7 +123,7 @@ classifiers = [
 # For an analysis of this field vs pip's requirements files see:
 # https://packaging.python.org/discussions/install-requires-vs-requirements/
 dependencies = [
-  "numpy", "sif_parser", "pandas", "scipy"
+  "numpy", "sif_parser", "pandas", "scipy", "typing_extensions"
 ]
 
 # List additional groups of dependencies here (e.g. development
