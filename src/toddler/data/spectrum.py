@@ -329,6 +329,22 @@ class Spectrum:
         else:
             return x
 
+    def max(self, *args, inplace=True, **kwargs):
+        x = np.nanmax(self.data, *args, **{"keepdims": True, **kwargs})
+        if inplace:
+            self.data = x
+            return self
+        else:
+            return x
+
+    def min(self, *args, inplace=True, **kwargs):
+        x = np.nanmin(self.data, *args, **{"keepdims": True, **kwargs})
+        if inplace:
+            self.data = x
+            return self
+        else:
+            return x
+
     def suml(self, *args, inplace=True, **kwargs):
         return self.sum(*args, inplace=inplace, **{"axis": self._axis_lambda, **kwargs})
 
@@ -481,12 +497,17 @@ class Spectrum:
             print(f"{k}: {v}")
 
     @classmethod
-    def from_file(
+    def from_file(cls, sif_file, *args) -> Self:
+        if Path(sif_file).suffix == ".sif":
+            return cls.from_sif(sif_file, *args)
+
+    @classmethod
+    def from_sif(
         cls,
         sif_file,
         nm_range: tuple[int, int] = None,
         use_wavelength_calibration=False,
-        new_axes=False,
+        new_axes=True,
     ) -> Self:
         data, info = sif_reader.np_open(sif_file)
         if new_axes:
@@ -517,6 +538,13 @@ class Spectrum:
             df.iloc[:, 1].to_numpy(), None, df.iloc[:, 0].to_numpy() * wavelength_factor
         )
 
+    def to_dict(self):
+        return {
+            "data": self.data,
+            "info": self.info,
+            "lambda": self.lambda_,
+        }
+
     def save(self, path, name):
         filename = Path(path).resolve() / (name + ".csv")
         df = pd.DataFrame(columns=["Wavelength_m", "Intensity_arb"])
@@ -544,42 +572,9 @@ def _check_wavelength_axis(l1, l2):
     if l1 is None and l2 is None:
         return
     else:
-        assert np.array_equal(
-            l1, l2, equal_nan=True
+        assert np.allclose(
+            l1, l2, atol=5e-11, equal_nan=True
         ), f"Spectra have different wavelength axes: {l1} and {l2}"
-
-
-def gaussian(x, mu, sig):
-    return (
-        1.0 / (np.sqrt(2.0 * np.pi) * sig) * np.exp(-np.power((x - mu) / sig, 2.0) / 2)
-    )
-
-
-def convolute_stick_spectrum(
-    x: np.ndarray, I: np.ndarray, x_range=None, sigma=0, gamma=0
-):
-    x = x.flatten()
-    I = I.flatten()
-
-    x_min = np.nanmin(x) - (sigma + gamma) * 2
-    x_max = np.nanmax(x) + (sigma + gamma) * 2
-    if x_range is None:
-        x_range = np.arange(x_min, x_max, (sigma + gamma) / 10)
-
-    I_convoluted = np.zeros((x_range.size, I.size))
-
-    for i, (x_i, I_i) in enumerate(zip(x, I)):
-        if np.isnan(x_i) or np.isnan(I_i):
-            continue
-
-        # thispeak = gaussian(x_range, x_i, sigma)
-        # if np.nanmax(thispeak) == 0.0:
-        #     continue
-        thispeak = voigt_profile(x_range - x_i, sigma, gamma)
-        I_convoluted[:, i] = I_i * thispeak / voigt_profile(0, sigma, gamma)
-
-    I_convoluted2 = np.sum(I_convoluted, axis=1)
-    return x_range, I_convoluted2
 
 
 if __name__ == "__main__":
