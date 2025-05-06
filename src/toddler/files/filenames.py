@@ -1,5 +1,6 @@
 import re
 import numpy as np
+from pathlib import Path
 
 
 def parse_integers(string, *patterns) -> tuple[int, ...]:
@@ -7,7 +8,15 @@ def parse_integers(string, *patterns) -> tuple[int, ...]:
     for pattern in patterns:
         match = re.search(pattern, string)
         if match:
-            results.append(int(match.group(1)))
+            matched_str = match.group(1)
+            # Check if this is an int
+            if re.search(r"^-?\d+$", matched_str):
+                results.append(int(matched_str))
+            # Check if this is a float
+            elif re.search(r"^-?\d+\.\d+$", matched_str):
+                results.append(float(matched_str))
+        else:
+            results.append(None)
 
     if len(results) == 1:
         return results[0]
@@ -26,6 +35,7 @@ def sorted_glob(folder, pattern, sortby, *patterns):
 
 
 def glob(folder, pattern, *patterns):
+    folder = Path(folder)
     for file in folder.glob(pattern):
         yield file, parse_integers(file.stem, *patterns)
 
