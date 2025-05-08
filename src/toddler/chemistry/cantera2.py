@@ -5,7 +5,7 @@ import numpy.typing as npt
 
 
 def get_solution(*gases):
-    return ct.Solution("gri30.yaml")[gases]
+    return ct.Solution("gri30_highT.yaml")[gases]
 
 
 def calculate_parameters(
